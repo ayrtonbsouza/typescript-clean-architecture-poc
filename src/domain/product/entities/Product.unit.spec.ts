@@ -1,6 +1,6 @@
 import { Product } from './Product';
 
-describe('Product Entity', () => {
+describe('[Unit] Product Entity', () => {
   it('should not be able to create a new product instance when id is empty', () => {
     expect(() => {
       const product = new Product('', 'Product 1', 10);

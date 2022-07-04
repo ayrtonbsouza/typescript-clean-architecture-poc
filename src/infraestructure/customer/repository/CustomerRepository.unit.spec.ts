@@ -4,7 +4,7 @@ import { Address } from '../../../domain/customer/value-object/Address';
 import { CustomerModel } from '../database/model/Customer.model';
 import { CustomerRepository } from './CustomerRepository';
 
-describe('Customer Repository', () => {
+describe('[Unit] Customer Repository', () => {
   let sequelize: Sequelize;
 
   beforeEach(async () => {

@@ -1,6 +1,6 @@
 import { ProductFactory } from './Product.factory';
 
-describe('Product Factory', () => {
+describe('[Unit] Product Factory', () => {
   it('should be able to create a product', () => {
     const product = ProductFactory.create('a', 'Product 1', 10);
     expect(product).toBeDefined();

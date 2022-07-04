@@ -3,7 +3,7 @@ import { Product } from '../../../../domain/product/entities/Product';
 import { ProductModel } from '../../database/model/sequelize/Product.model';
 import { ProductRepository } from './ProductRepository';
 
-describe('Product Repository', () => {
+describe('[Unit] Product Repository', () => {
   let sequelize: Sequelize;
 
   beforeEach(async () => {

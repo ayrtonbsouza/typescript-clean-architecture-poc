@@ -3,7 +3,7 @@ import { Order } from '../entities/Order';
 import { OrderItem } from '../entities/OrderItem';
 import { OrderService } from './Order.service';
 
-describe('Order Service', () => {
+describe('[Unit] Order Service', () => {
   it('should be able to place a new order', () => {
     const customer = new Customer('1234567890', 'John Doe');
     const item = new OrderItem('1', '1234567890', 'First Item', 100, 2);

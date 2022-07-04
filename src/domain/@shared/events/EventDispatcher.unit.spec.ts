@@ -2,7 +2,7 @@ import { SendEmailWhenProductIsCreatedHandler } from '../../product/events/handl
 import { ProductCreatedEvent } from '../../product/events/ProductCreated.event';
 import { EventDispatcher } from './EventDispatcher';
 
-describe('Domain events', () => {
+describe('[Unit] Domain events', () => {
   it('should be able to notify event handlers', () => {
     const eventDispatcher = new EventDispatcher();
     const eventHandler = new SendEmailWhenProductIsCreatedHandler();

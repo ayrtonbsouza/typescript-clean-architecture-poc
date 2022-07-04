@@ -1,7 +1,7 @@
 import { v4 as uuid } from 'uuid';
 import { OrderFactory } from './Order.factory';
 
-describe('Order Factory', () => {
+describe('[Unit] Order Factory', () => {
   it('should be able to create an order', () => {
     const orderProps = {
       customerId: uuid(),

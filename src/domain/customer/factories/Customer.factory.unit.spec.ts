@@ -1,7 +1,7 @@
 import { Address } from '../value-object/Address';
 import { CustomerFactory } from './Customer.factory';
 
-describe('Customer Factory', () => {
+describe('[Unit] Customer Factory', () => {
   it('should be able to create a customer', () => {
     const customer = CustomerFactory.create('John Doe');
     expect(customer).toBeDefined();

@@ -1,7 +1,7 @@
 import { Order } from './Order';
 import { OrderItem } from './OrderItem';
 
-describe('Order Entity', () => {
+describe('[Unit] Order Entity', () => {
   it('should not be able to create a new order instance when id is empty', () => {
     expect(() => {
       const order = new Order('', '1234567890', []);

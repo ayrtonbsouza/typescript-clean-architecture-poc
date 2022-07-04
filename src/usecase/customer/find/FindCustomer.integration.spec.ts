@@ -3,8 +3,9 @@ import { Customer } from '../../../domain/customer/entities/Customer';
 import { Address } from '../../../domain/customer/value-object/Address';
 import { CustomerModel } from '../../../infraestructure/customer/database/model/Customer.model';
 import { CustomerRepository } from '../../../infraestructure/customer/repository/CustomerRepository';
+import { FindCustomerUseCase } from './FindCustomer';
 
-describe('FindCustomer UseCase', () => {
+describe('[Integration] FindCustomer UseCase', () => {
   let sequelize: Sequelize;
 
   beforeEach(async () => {
@@ -42,13 +43,13 @@ describe('FindCustomer UseCase', () => {
       address: {
         street: 'Main st',
         number: 123,
-        zipCode: '12345',
+        zip: '12345',
         city: 'New York',
         state: 'NY',
       },
     };
 
-    const output = useCase.execute(input);
+    const output = await useCase.execute(input);
 
     expect(output).toEqual(expected);
   });

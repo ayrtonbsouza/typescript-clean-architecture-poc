@@ -4,7 +4,7 @@ import { SendSMSWhenCustomerIsCreatedHandler } from '../events/handler/SendSMSWh
 import { Address } from '../value-object/Address';
 import { Customer } from './Customer';
 
-describe('Customer Entity', () => {
+describe('[Unit] Customer Entity', () => {
   it('should not be able to create a new category instance when id is empty', () => {
     expect(() => {
       const customer = new Customer('', 'John Doe');

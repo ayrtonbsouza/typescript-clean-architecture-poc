@@ -12,7 +12,7 @@ import { OrderModel } from '../database/sequelize/model/Order.model';
 import { OrderItemModel } from '../database/sequelize/model/OrderItem.model';
 import { OrderRepository } from './OrderRepository';
 
-describe('Order Repository', () => {
+describe('[Unit] Order Repository', () => {
   let sequelize: Sequelize;
 
   beforeEach(async () => {
