@@ -39,4 +39,18 @@ describe('[Unit] FindCustomer UseCase', () => {
 
     expect(output).toEqual(expected);
   });
+
+  it('should receive an error when the customer is not found', () => {
+    const customerRepository = MockRepository();
+    customerRepository.find.mockImplementation(() => {
+      throw new Error('Customer not found');
+    });
+
+    const useCase = new FindCustomerUseCase(customerRepository);
+    const input = {
+      id: '1234567890',
+    };
+
+    expect(() => useCase.execute(input)).rejects.toThrow('Customer not found');
+  });
 });
