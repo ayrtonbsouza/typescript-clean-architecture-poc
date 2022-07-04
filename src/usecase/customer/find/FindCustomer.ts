@@ -1,8 +1,5 @@
 import { ICustomerRepository } from '../../../domain/customer/repositories/ICustomerRepository';
-import {
-  IInputFindCustomerDto,
-  IOutputFindCustomerDto,
-} from './IFindCustomer.dto';
+import { IInputFindCustomerDto, IOutputFindCustomerDto } from './dtos';
 
 export class FindCustomerUseCase {
   private customerRepository: ICustomerRepository;

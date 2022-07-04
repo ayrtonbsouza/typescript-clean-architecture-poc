@@ -1,7 +1,3 @@
-export interface IInputFindCustomerDto {
-  id: string;
-}
-
 export interface IOutputFindCustomerDto {
   id: string;
   name: string;
