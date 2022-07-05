@@ -1,3 +1,5 @@
+import { CreateCustomerUseCase } from './CreateCustomer';
+
 const input = {
   name: 'John Doe',
   address: {
