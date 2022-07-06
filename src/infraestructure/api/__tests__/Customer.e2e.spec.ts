@@ -6,7 +6,7 @@ describe('[E2E] Customer', () => {
     await sequelize.sync({ force: true });
   });
 
-  afterEach(async () => {
+  afterAll(async () => {
     await sequelize.close();
   });
 
@@ -31,5 +31,12 @@ describe('[E2E] Customer', () => {
     expect(response.body.address.zip).toBe('12345');
     expect(response.body.address.city).toBe('New York');
     expect(response.body.address.state).toBe('NY');
+  });
+
+  it('should receive an error when creating a customer with invalid data', async () => {
+    const response = await request(app).post('/customers').send({
+      name: 'John Doe',
+    });
+    expect(response.status).toBe(500);
   });
 });
