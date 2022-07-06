@@ -39,4 +39,42 @@ describe('[E2E] Customer', () => {
     });
     expect(response.status).toBe(500);
   });
+
+  it('should be able to list all customers', async () => {
+    const firstCustomer = await request(app)
+      .post('/customers')
+      .send({
+        name: 'John Doe',
+        address: {
+          street: 'Main St',
+          number: 123,
+          zip: '12345',
+          city: 'New York',
+          state: 'NY',
+        },
+      });
+    expect(firstCustomer.status).toBe(200);
+
+    const secondCustomer = await request(app)
+      .post('/customers')
+      .send({
+        name: 'Jane Doe',
+        address: {
+          street: 'Second St',
+          number: 321,
+          zip: '54321',
+          city: 'Cupertino',
+          state: 'CA',
+        },
+      });
+    expect(secondCustomer.status).toBe(200);
+
+    const response = await request(app).get('/customers').send();
+    expect(response.status).toBe(200);
+    expect(response.body.customers).toHaveLength(2);
+    expect(response.body.customers[0].name).toBe('John Doe');
+    expect(response.body.customers[1].name).toBe('Jane Doe');
+    expect(response.body.customers[0].address.street).toBe('Main St');
+    expect(response.body.customers[1].address.street).toBe('Second St');
+  });
 });

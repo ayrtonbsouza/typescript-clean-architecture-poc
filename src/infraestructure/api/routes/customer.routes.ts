@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
 import { CreateCustomerUseCase } from '../../../usecase/customer/create/CreateCustomer';
+import { ListCustomerUseCase } from '../../../usecase/customer/list/ListCustomer';
 import { CustomerRepository } from '../../customer/repository/CustomerRepository';
 
 export const customerRoute = express.Router();
@@ -18,6 +19,16 @@ customerRoute.post('/', async (req: Request, res: Response) => {
       },
     };
     const output = await useCase.execute(customerDto);
+    res.send(output);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+customerRoute.get('/', async (req: Request, res: Response) => {
+  const useCase = new ListCustomerUseCase(new CustomerRepository());
+  try {
+    const output = await useCase.execute({});
     res.send(output);
   } catch (error) {
     res.status(500).send(error);
