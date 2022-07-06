@@ -15,7 +15,7 @@ describe('[E2E] Product', () => {
       name: 'Product 1',
       price: 10,
     });
-    console.log('response: ', response.body);
+
     expect(response.status).toBe(200);
     expect(response.body).toHaveProperty('id');
     expect(response.body.name).toBe('Product 1');
