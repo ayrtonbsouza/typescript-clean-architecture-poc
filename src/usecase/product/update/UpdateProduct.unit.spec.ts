@@ -20,8 +20,15 @@ describe('[Unit] UpdateProduct UseCase', () => {
   it('should be able to update a product', async () => {
     const productRepository = MockRepository();
     const useCase = new UpdateProductUseCase(productRepository);
+    input.name = 'Product 2';
+    input.price = 10;
 
     const output = await useCase.execute(input);
-    expect(output).toEqual(input);
+
+    expect(output).toEqual({
+      id: product.id,
+      name: 'Product 2',
+      price: 10,
+    });
   });
 });
