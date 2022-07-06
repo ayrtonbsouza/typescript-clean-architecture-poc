@@ -21,7 +21,7 @@ const MockRepository = () => ({
     .mockReturnValue(Promise.resolve([firstCustomer, secondCustomer])),
 });
 
-describe('[Unit] List Customer Use Case', () => {
+describe('[Unit] ListCustomer UseCase', () => {
   it('should be able to list all customers', async () => {
     const respository = MockRepository();
     const useCase = new ListCustomerUseCase(respository);

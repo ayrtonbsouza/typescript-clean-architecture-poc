@@ -1,10 +1,10 @@
+import { ICustomerRepository } from '../../../domain/customer/repositories/ICustomerRepository';
 import { Address } from '../../../domain/customer/value-object/Address';
-import { CustomerRepository } from '../../../infraestructure/customer/repository/CustomerRepository';
 import { IInputUpdateCustomerDto, IOutputUpdateCustomerDto } from './dtos';
 
 export class UpdateCustomerUseCase {
-  private customerRepository: CustomerRepository;
-  constructor(customerRepository: CustomerRepository) {
+  private customerRepository: ICustomerRepository;
+  constructor(customerRepository: ICustomerRepository) {
     this.customerRepository = customerRepository;
   }
 

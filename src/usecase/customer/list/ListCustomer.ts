@@ -1,6 +1,6 @@
 import { ICustomerRepository } from '../../../domain/customer/repositories/ICustomerRepository';
 import { IInputListCustomerDto, IOutputListCustomerDto } from './dtos';
-import { OutputMapper } from './helpers/OutputMapper';
+import { OutputMapper } from './util/OutputMapper';
 
 export class ListCustomerUseCase {
   private customerRepository: ICustomerRepository;
