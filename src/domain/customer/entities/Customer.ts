@@ -1,4 +1,6 @@
+import { Entity } from '../../@shared/entity/Entity.abstract';
 import { EventDispatcher } from '../../@shared/events/EventDispatcher';
+import { NotificationError } from '../../@shared/notification/notification.error';
 import { AddressChangedEvent } from '../events/AddressChanged.event';
 import { CustomerCreatedEvent } from '../events/CustomerCreated.event';
 import { SendEmailWhenAddressIsChangedHandler } from '../events/handler/SendEmailWhenAddressIsChanged.handler';
@@ -6,8 +8,7 @@ import { SendEmailWhenCustomerIsCreatedHandler } from '../events/handler/SendEma
 import { SendSMSWhenCustomerIsCreatedHandler } from '../events/handler/SendSMSWhenCustomerIsCreated.handler';
 import { Address } from '../value-object/Address';
 
-export class Customer {
-  private _id: string;
+export class Customer extends Entity {
   private _name = '';
   private _address!: Address;
   private _active = false;
@@ -22,24 +23,31 @@ export class Customer {
     new SendEmailWhenAddressIsChangedHandler();
 
   constructor(id: string, name: string) {
+    super();
     this._id = id;
     this._name = name;
     this.validate();
     this.notifyWhenCustomerIsCreated();
+
+    if (this.notification.hasErrors()) {
+      throw new NotificationError(this.notification.getErrors());
+    }
   }
 
   validate() {
-    if (this._id.length === 0) {
-      throw new Error('Id is required');
+    if (this.id.length === 0) {
+      this.notification.addError({
+        context: 'Customer',
+        message: 'Id is required',
+      });
     }
 
     if (this._name.length === 0) {
-      throw new Error('Name is required');
+      this.notification.addError({
+        context: 'Customer',
+        message: 'Name is required',
+      });
     }
-  }
-
-  get id(): string {
-    return this._id;
   }
 
   get name(): string {
@@ -66,7 +74,7 @@ export class Customer {
       this.sendEmailWhenAddressIsChanged
     );
     const addressChangedEvent = new AddressChangedEvent({
-      id: this._id,
+      id: this.id,
       name: this._name,
       address: `${this._address.street}, ${this._address.number}`,
     });

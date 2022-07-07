@@ -9,14 +9,21 @@ describe('[Unit] Customer Entity', () => {
     expect(() => {
       const customer = new Customer('', 'John Doe');
       return customer;
-    }).toThrowError('Id is required');
+    }).toThrowError('Customer: Id is required');
   });
 
   it('should not be able to create a new category instance when name is empty', () => {
     expect(() => {
       const customer = new Customer('1234567890', '');
       return customer;
-    }).toThrowError('Name is required');
+    }).toThrowError('Customer: Name is required');
+  });
+
+  it('should not be able to create a new category instance when name and id are empty', () => {
+    expect(() => {
+      const customer = new Customer('', '');
+      return customer;
+    }).toThrowError('Customer: Id is required,Customer: Name is required');
   });
 
   it('should be able to change name', () => {

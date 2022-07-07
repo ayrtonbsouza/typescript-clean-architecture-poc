@@ -33,4 +33,24 @@ describe('[Unit] Notification', () => {
       'Customer: First error message,Customer: Second error message,Order: third error message,'
     );
   });
+
+  it('should be able to check if notification have at least one error', () => {
+    const notification = new Notification();
+    const error = {
+      message: 'First error message',
+      context: 'Customer',
+    };
+    notification.addError(error);
+    expect(notification.hasErrors()).toBe(true);
+  });
+
+  it('should be able to get error props', () => {
+    const notification = new Notification();
+    const error = {
+      message: 'First error message',
+      context: 'Customer',
+    };
+    notification.addError(error);
+    expect(notification.getErrors()).toStrictEqual([error]);
+  });
 });
