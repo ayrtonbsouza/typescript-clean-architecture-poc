@@ -6,6 +6,7 @@ import { CustomerCreatedEvent } from '../events/CustomerCreated.event';
 import { SendEmailWhenAddressIsChangedHandler } from '../events/handler/SendEmailWhenAddressIsChanged.handler';
 import { SendEmailWhenCustomerIsCreatedHandler } from '../events/handler/SendEmailWhenCustomerIsCreated.handler';
 import { SendSMSWhenCustomerIsCreatedHandler } from '../events/handler/SendSMSWhenCustomerIsCreated.handler';
+import { CustomerValidatorFactory } from '../factories/CustomerValidator.factory';
 import { Address } from '../value-object/Address';
 
 export class Customer extends Entity {
@@ -35,19 +36,7 @@ export class Customer extends Entity {
   }
 
   validate() {
-    if (this.id.length === 0) {
-      this.notification.addError({
-        context: 'Customer',
-        message: 'Id is required',
-      });
-    }
-
-    if (this._name.length === 0) {
-      this.notification.addError({
-        context: 'Customer',
-        message: 'Name is required',
-      });
-    }
+    CustomerValidatorFactory.create().validate(this);
   }
 
   get name(): string {
