@@ -22,6 +22,15 @@ describe('[Unit] Product Entity', () => {
     }).toThrowError('Product: Price must be greater than zero');
   });
 
+  it('should not be able to create a new product instance when price is less than zero, id is empty and name is empty', () => {
+    expect(() => {
+      const product = new Product('', '', -1);
+      return product;
+    }).toThrowError(
+      'Product: Id is required,Product: Name is required,Product: Price must be greater than zero'
+    );
+  });
+
   it('should be able to change product name', () => {
     const product = new Product('1234567890', 'Product 1', 10);
     product.changeName('Product 2');
