@@ -1,19 +1,21 @@
+import { Entity } from '../../@shared/entity/Entity.abstract';
+import { NotificationError } from '../../@shared/notification/notification.error';
 import { IProduct } from './IProduct';
 
-export class Product implements IProduct {
-  private _id: string;
+export class Product extends Entity implements IProduct {
   private _name: string;
   private _price: number;
 
   constructor(id: string, name: string, price: number) {
+    super();
     this._id = id;
     this._name = name;
     this._price = price;
     this.validate();
-  }
 
-  get id(): string {
-    return this._id;
+    if (this.notification.hasErrors()) {
+      throw new NotificationError(this.notification.getErrors());
+    }
   }
 
   get name(): string {
@@ -36,15 +38,24 @@ export class Product implements IProduct {
 
   validate() {
     if (this._id.length === 0) {
-      throw new Error('Id is required');
+      this.notification.addError({
+        context: 'Product',
+        message: 'Id is required',
+      });
     }
 
     if (this._name.length === 0) {
-      throw new Error('Name is required');
+      this.notification.addError({
+        context: 'Product',
+        message: 'Name is required',
+      });
     }
 
     if (this._price <= 0) {
-      throw new Error('Price must be greater than zero');
+      this.notification.addError({
+        context: 'Product',
+        message: 'Price must be greater than zero',
+      });
     }
   }
 }
